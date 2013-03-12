@@ -1,4 +1,0 @@
-<?php
-//commentaire ajout fichier
-
-?>
