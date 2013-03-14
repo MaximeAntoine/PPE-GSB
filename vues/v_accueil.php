@@ -1,3 +1,3 @@
 ﻿<div id="accueil">
-Application Gestion des visites
+Bienvenue sur l'application de gestion des visites !
 </div>

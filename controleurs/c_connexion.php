@@ -39,7 +39,7 @@ switch($action)
     case 'deconnexion':
     {
         session_destroy();
-        include("vues/v_aurevoir.php");
+        include("vues/v_deconnexion.php");
         include("vues/v_connexion.php");
         break;
     }
