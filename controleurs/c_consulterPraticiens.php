@@ -1,7 +1,5 @@
 <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+include ("vues/v_entete.php");
+$lesPraticiens=$pdo-> getPraticiens();
+include ("vues/v_sommaire.php");
 ?>
