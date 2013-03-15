@@ -1,8 +1,10 @@
 <?php
+session_start();
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
 require_once("include/fct.inc.php");
 require_once ("include/modele.inc.php");
 include("vues/v_entete.php") ;
-session_start();
 $pdo = PdoGsb::getPdoGsb();
 if(!isset($_REQUEST['uc']) || (!isset($_SESSION['login'])))
 {
