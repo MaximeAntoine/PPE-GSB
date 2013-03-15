@@ -25,7 +25,7 @@
            <li class="smenu">
               <a href="index.php?uc=" title="Consulter les médicaments">    Médicaments</a>
            </li><li class="smenu">
-              <a href="index.php?uc=" title="Consulter les praticiens">Praticiens</a>
+              <a href="index.php?uc=Praticiens" title="Consulter les praticiens">Praticiens</a>
            </li>
            <li class="smenu">
               <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter">Déconnexion</a>
