@@ -71,8 +71,8 @@ class PdoGsb{
     
    public function getPraticiens(){
        // retourne un tableau associatif contenant tous les praticiens 
-       $req="Select pra_nom,pra_prenom,pra_adresse,pra_cp,pra_ville,typ_libelle
-             from praticien join type_praticien on praticien.typ_code = typ_praticien=typ_code ";
+       $req="Select pra_nom,pra_prenom,pra_adresse,pra_cp,pra_ville
+             from praticien";
        $rs = PdoGsb::$monPdo->query($req);
             $ligne = $rs->fetchAll(PDO::FETCH_ASSOC);
             return $ligne;
