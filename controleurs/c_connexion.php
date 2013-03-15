@@ -27,11 +27,29 @@ switch($action)
             $id = $visiteur['VIS_MATRICULE'];
             $nom =  $visiteur['VIS_NOM'];
             $prenom = $visiteur['VIS_PRENOM'];
+            $type = $visiteur['VIS_TYPE'];
             $_SESSION['login']= $login; // mémorise les variables de session
             $_SESSION['vis_matricule']= $id;
             $_SESSION['nom']= $nom;
             $_SESSION['prenom']= $prenom;
-            include("vues/v_sommaire.php");
+            $_SESSION['type'] = $type;
+            switch ($_SESSION['type'])
+            {
+                case 'V' :
+                {
+                    include("vues/v_sommaireVisiteur.php");
+                    break;
+                }
+                case 'D' :
+                {
+                    include("vues/v_sommaireDelegue.php");
+                    break;
+                }
+                case 'R' :
+                {
+                        include("vues/v_sommaireResponsable.php");
+                }
+            }
             include("vues/v_accueil.php");
         }
         break;

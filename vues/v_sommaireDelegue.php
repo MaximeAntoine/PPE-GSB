@@ -12,23 +12,19 @@
         <br/>
         <!--Non cliquable pour l'instant-->
         <li class="smenu">
-            Comptes rendus 
-        </li> 
-        <li class="smenu">
-            <a href="index.php?uc=gererCR&action=saisirCR=" title="Nouveaux comptes rendus">Nouveaux</a>
+            <a href="index.php?uc=gererCR&action=saisirCR=" title="Nouveaux comptes rendus">Nouveaux CR</a>
         </li>
         <li class="smenu">
             <a href="index.php?uc=" title="Consulter les comptes rendus">Consulter</a>
-        </li>
-        <!--Non cliquable pour l'instant-->
-        <li class="smenu">
-            Consultations
         </li>
         <li class="smenu">
             <a href="index.php?uc=" title="Consulter les médicaments">Médicaments</a>
         </li>
         <li class="smenu">
             <a href="index.php?uc=" title="Consulter les praticiens">Praticiens</a>
+        </li>
+        <li class="smenu">
+            <a href="index.php?uc=" title="Activité des visiteurs">Voir activité</a>
         </li>
         <li class="smenu">
             <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter">Déconnexion</a>

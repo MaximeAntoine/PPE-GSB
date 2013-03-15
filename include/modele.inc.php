@@ -54,7 +54,7 @@ class PdoGsb{
 	}
    public function getInfosVisiteur($login,$mdp){
        // retourne un tableau associatif contenant le visiteur
-         $req="select VIS_MATRICULE, VIS_NOM ,VIS_PRENOM from visiteur where LOGIN = '$login' and MDP = '$mdp'";
+         $req="select VIS_MATRICULE, VIS_NOM ,VIS_PRENOM, VIS_TYPE from visiteur where LOGIN = '$login' and MDP = '$mdp'";
        //$req="select VIS_MATRICULE, VIS_NOM ,VIS_PRENOM from visiteur where LOGIN = 'test' and MDP = 'test'";
          $rs = PdoGsb::$monPdo->query($req);
 		$ligne = $rs->fetch(PDO::FETCH_ASSOC);
