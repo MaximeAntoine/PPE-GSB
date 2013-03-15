@@ -26,6 +26,10 @@ switch($uc)
         include("controleurs/c_etatFrais.php");
         break; 
     }
+    case 'Praticiens':{
+        include("controleurs/c_consulterPraticiens.php");
+    }
+    
 }
 include("vues/v_pied.php") ;
 ?>

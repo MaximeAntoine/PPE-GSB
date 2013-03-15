@@ -68,6 +68,25 @@ class PdoGsb{
 		return $ligne;
         // ou return $this->_pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
     }
+    
+   public function getPraticiens(){
+       // retourne un tableau associatif contenant tous les praticiens 
+       $req="Select pra_num,pra_nom,pra_prenom,pra_adresse,pra_cp,pra_ville,pra_coefnotoriete
+             from praticien";
+       $rs = PdoGsb::$monPdo->query($req);
+            $ligne = $rs->fetchAll(PDO::FETCH_ASSOC);
+            return $ligne;
+   }
+   
+   public function getUnPatricien($idPraticien){
+       // retourne un tableau associatif contenant les informations d'un praticiens
+       $req="Select pra_nom,pra_prenom,pra_adresse,pra_cp,pra_ville
+             from praticien
+             where pra_num=".$idPraticien."";
+       $rs = PdoGsb::$monPdo->query($req);
+            $ligne = $rs->fetchAll(PDO::FETCH_ASSOC);
+            return $ligne;
+   }
 
 }   
   ?>

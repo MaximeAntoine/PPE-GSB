@@ -18,10 +18,10 @@
             <a href="index.php?uc=" title="Consulter les comptes rendus">Consulter</a>
         </li>
         <li class="smenu">
-            <a href="index.php?uc=" title="Consulter les médicaments">Médicaments</a>
+            <a href="index.php?uc=Medicaments" title="Consulter les médicaments">Médicaments</a>
         </li>
         <li class="smenu">
-            <a href="index.php?uc=" title="Consulter les praticiens">Praticiens</a>
+            <a href="index.php?uc=Praticiens" title="Consulter les praticiens">Praticiens</a>
         </li>
         <li class="smenu">
             <a href="index.php?uc=" title="Activité des visiteurs">Voir activité</a>
