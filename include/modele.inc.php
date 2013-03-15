@@ -18,7 +18,7 @@ class PdoGsb{
       	private static $serveur='mysql:host=localhost';
       	private static $bdd='dbname=gsb_visiteurs';   		
       	private static $user='root' ;    		
-      	private static $mdp='root' ;
+      	private static $mdp='' ;
         private static $monPdo;
 	private static $monPdoGsb=null;
 
@@ -86,6 +86,12 @@ class PdoGsb{
        $rs = PdoGsb::$monPdo->query($req);
             $ligne = $rs->fetchAll(PDO::FETCH_ASSOC);
             return $ligne;
+   }
+   public function getMedicaments(){
+       $req="select MED_DEPOTLEGAL, MED_NOMCOMMERCIAL, FAM_CODE, MED_COMPOSITION, MED_EFFETS, MED_CONTREINDIC, MED_PRIXECHANTILLON from medicament";
+       $rs = PdoGsb::$monPdo->query($req);
+        $ligne = $rs->fetchAll(PDO::FETCH_ASSOC);
+        return $ligne;
    }
 
 }   

@@ -31,6 +31,10 @@ switch($uc)
     case 'Praticiens':{
         include("controleurs/c_consulterPraticiens.php");
     }
+    case 'Medicaments':{
+        include("controleurs/c_consulterMedicaments.php");
+        break;
+    }
     
 }
 include("vues/v_pied.php") ;
