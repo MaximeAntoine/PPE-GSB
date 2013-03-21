@@ -93,6 +93,5 @@ class PdoGsb{
         $ligne = $rs->fetchAll(PDO::FETCH_ASSOC);
         return $ligne;
    }
-
 }   
   ?>
