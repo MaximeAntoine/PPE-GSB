@@ -68,24 +68,36 @@ class PdoGsb{
 		return $ligne;
         // ou return $this->_pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+   
    public function getPraticiens(){
        // retourne un tableau associatif contenant tous les praticiens 
        $req="Select pra_num,pra_nom,pra_prenom,pra_adresse,pra_cp,pra_ville,pra_coefnotoriete
-             from praticien";
+             from praticien
+             Order by pra_nom ASC";
        $rs = PdoGsb::$monPdo->query($req);
             $ligne = $rs->fetchAll(PDO::FETCH_ASSOC);
             return $ligne;
    }
-   
-   public function getUnPatricien($idPraticien){
+   public function getUnPatricien($id){
        // retourne un tableau associatif contenant les informations d'un praticiens
-       $req="Select pra_nom,pra_prenom,pra_adresse,pra_cp,pra_ville
+       $req="Select pra_nom,pra_prenom,pra_adresse,pra_cp,pra_ville,pra_tel,pra_coefnotoriete,typ_libelle,pos_diplome,spe_libelle
+             from praticien  
+             inner join type_praticien on praticien.typ_code = type_praticien.typ_code
+             inner join posseder on praticien.pra_num = posseder.pra_num
+             inner join specialite on posseder.spe_code = specialite.spe_code
+             where praticien.pra_num=".$id."";
+       $rs = PdoGsb::$monPdo->query($req);
+       $ligne = $rs->fetchAll(PDO::FETCH_ASSOC);
+       return $ligne;
+   }
+      public function getVillePraticien($ville){
+       $req="Select pra_num,pra_nom,pra_prenom,pra_adresse,pra_cp,pra_ville,pra_coefnotoriete
              from praticien
-             where pra_num=".$idPraticien."";
+             where pra_ville=".$ville."";
        $rs = PdoGsb::$monPdo->query($req);
             $ligne = $rs->fetchAll(PDO::FETCH_ASSOC);
             return $ligne;
+       
    }
    public function getMedicaments(){
        $req="select MED_DEPOTLEGAL, MED_NOMCOMMERCIAL, FAM_CODE, MED_COMPOSITION, MED_EFFETS, MED_CONTREINDIC, MED_PRIXECHANTILLON from medicament";
