@@ -68,11 +68,20 @@ class PdoGsb{
 		return $ligne;
         // ou return $this->_pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getMedicaments() {
+     // retourne un tableau associatif contenant tous les visiteurs
+         $req="select * from medicament";
+         $rs = PdoGsb::$monPdo->query($req);
+    $ligne = $rs->fetchAll(PDO::FETCH_ASSOC);
+    return $ligne;
+        // ou return $this->_pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+    }
     
    public function getPraticiens(){
        // retourne un tableau associatif contenant tous les praticiens 
        $req="Select pra_num,pra_nom,pra_prenom,pra_adresse,pra_cp,pra_ville,pra_coefnotoriete
-             from praticien";
+             from praticien order by pra_nom";
        $rs = PdoGsb::$monPdo->query($req);
             $ligne = $rs->fetchAll(PDO::FETCH_ASSOC);
             return $ligne;
@@ -88,5 +97,34 @@ class PdoGsb{
             return $ligne;
    }
 
+   public function ajouteCompteRendu($dateSaisie, $motif, $bilan, $numeroPraticien,$coefficient, $checkRemplacant, $produitUn, $produitDeux, $checkDocOfferte, $qteProduitUn, $qteProduitDeux){
+      $newDate = date("Y-m-d", strtotime($dateSaisie))." 00:00:00";
+
+      //récupère l'id de rapport le plus grand pour un praticien
+      $sqlSelect = "SELECT MAX(RAP_NUM) as numMax FROM rapport_visite WHERE VIS_MATRICULE = '".$_SESSION['vis_matricule']."'";
+      $rs = PdoGsb::$monPdo->query($sqlSelect);
+      $ligne = $rs->fetchAll(PDO::FETCH_ASSOC);
+      
+      $numeroRap = 0;
+      if(count($ligne) >= 0)
+        $numeroRap = $ligne[0]['numMax'];
+
+      $numeroRap++;
+    
+      //Ajoute le rapport de visite
+      $sqlInsertRapport = "INSERT INTO rapport_visite VALUES ('".$_SESSION['vis_matricule']."', ".$numeroRap.", '".$numeroPraticien."', '".$newDate."', '".$bilan."', '".$motif."', '".$checkDocOfferte."', '".$checkRemplacant."')";
+      $r = PdoGsb::$monPdo->exec($sqlInsertRapport);
+
+      //Ajoute les produits offerts
+      $sqlInsertOffrirProduitUn = "INSERT INTO offrir VALUES ('".$_SESSION['vis_matricule']."', ".$numeroRap.", '".$produitUn."', ".$qteProduitUn.")";
+      $r = PdoGsb::$monPdo->exec($sqlInsertOffrirProduitUn);
+
+      $sqlInsertOffrirProduitDeux = "INSERT INTO offrir VALUES ('".$_SESSION['vis_matricule']."', ".($numeroRap).", '".$produitDeux."', ".$qteProduitDeux.")";
+      $r = PdoGsb::$monPdo->exec($sqlInsertOffrirProduitDeux);
+
+      //modifie le coefficient du praticien
+      $sqlUpdate = "UPDATE praticien SET PRA_COEFNOTORIETE = ".$coefficient." WHERE PRA_NUM = ".$numeroPraticien;
+      $r = PdoGsb::$monPdo->exec($sqlUpdate);
+   }
 }   
   ?>

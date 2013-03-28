@@ -31,6 +31,9 @@ switch($uc)
     case 'Praticiens':{
         include("controleurs/c_consulterPraticiens.php");
     }
+    case 'gererCR':{
+        include("controleurs/c_gererCR.php");
+    }
     
 }
 include("vues/v_pied.php") ;

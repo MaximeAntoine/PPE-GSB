@@ -2,137 +2,124 @@
 	echo "<h1>Saisie du compte rendu</h1>";
 
 	echo "
-	<table><tr><td>
-		<table>
-		<tr>
-			<td>
-				NUMERO:
-			</td>
+	<form action='#' method='post'>
+		<table><tr><td>
+			<table>
+			<tr><td row='2'><h2>Informations du rapport</h2></td></tr>
+			<tr>
+				<td>
+				Date de la visite:
+				</td>
+					
+				<td>
+					<input type='text' name='dateVisite' value='05/03/2013' placeholder='jj/mm/aaaa'/>
+				</td>
+			</tr>
 
-			<td>
-				<input type='text' name='' />
-			</td>
-		</tr>
+			<tr>
+				<td>
+				Motif de la visite:
+				</td>
+					
+				<td>
+				<textarea name='motif' rows='6' cols='70'>motif</textarea>
+				</td>
+			</tr>
 
-		<tr>
-			<td>
-			DATE VISITE:
-			</td>
-				
-			<td>
-				<input type='text' name='' />
-			</td>
-		</tr>
+			<tr>
+				<td>
+				Bilan:
+				</td>
 
-		<tr>
-			<td>
-			PRATICIEN:
-			</td>
-				
-			<td>
-				<select name=''>
-					<option name=''></option>
-				</select>
-			</td>
-		</tr>
+				<td>
+					<textarea name='bilan' rows='6' cols='70'>yugùôg</textarea>
+				</td>
+			</tr>
 
-		<tr>
-			<td>
-			COEFFICIENT:
-			</td>
+			<tr><td row='2'><h2>Informations du praticien</h2></td></tr>
 
-			<td>
-				<input type='text' name='' />
-			</td>
-		</tr>
+			<tr>
+				<td>
+				Praticien:
+				</td>
+					
+				<td>
+					<select name='numeroPraticien'>
+						".$listeOptionPraticiens."
+					</select>
+				</td>
+			</tr>
 
-		<tr>
-			<td>
-			REMPLACANT:
-			</td>
-				
-			<td>
-				<input type='checkbox' name=''/>
-				<select name=''>
-					<option name=''></option>
-				</select>
-			</td>
-		</tr>
+			<tr>
+				<td>
+				Coéfficient (mise à jour):
+				</td>
 
-		<tr>
-			<td>
-			DATE:
-			</td>
-				
-			<td>
-				<input type='text' name='' />
-			</td>
-		</tr>
+				<td>
+					<input type='text' name='coefficient' value='2'/>
+				</td>
+			</tr>
 
-		<tr>
-			<td>
-			MOTIF:
-			</td>
-				
-			<td>
-				<select name=''>
-					<option name=''></option>
-				</select>
-				<input type='text' name='' />
-			</td>
-		</tr>
+			<tr>
+				<td>
+				Est-il remplacant ?
+				</td>
+					
+				<td>
+					<input type='checkbox' name='checkRemplacant'/>
+					<!--<select name='numRemplacant'>
+						".$listeOptionPraticiens."
+					</select>-->
+				</td>
+			</tr>
+			</table>
+		</td></tr>
+		<tr><td>
 
-		<tr>
-			<td>
-			BILAN:
-			</td>
+			<h2>Éléments présentés</h2>
 
-			<td>
-				<textarea name=''></textarea>
-			</td>
-		</tr>
-		</table>
-	</td></tr>
-	<tr><td>
+			<table style='width:100%'>
+			<tr>
+				<td>
+					Produit 1:
+				</td>
 
-		<h2>Éléments présentés</h2>
+				<td>
+					<select name='produitUn'>
+						".$listeOptionMedicaments."
+					</select>
 
-		<table>
-		<tr>
-			<td>
-				PRODUIT 1:
-			</td>
+					<input type='text' name='qteProduitUn' placeholder='Quantité' value='0'/>
+				</td>
+			</tr>
 
-			<td>
-				<select name=''>
-					<option name=''></option>
-				</select>
-			</td>
-		</tr>
+			<tr>
+				<td>
+					Produit 2:
+				</td>
 
-		<tr>
-			<td>
-				PRODUIT2:
-			</td>
+				<td>
+					<select name='produitDeux'>
+						".$listeOptionMedicaments."
+					</select>
 
-			<td>
-				<select name=''>
-					<option name=''></option>
-				</select>
-			</td>
-		</tr>
+					<input type='text' name='qteProduitDeux' placeholder='Quantité' row='5' value='0'/>
+				</td>
+			</tr>
 
-		<tr>
-			<td>
-				DOCUMENTATION OFFERTE:
-			</td>
+			<tr>
+				<td>
+					Documentation offerte ?
+				</td>
 
-			<td>
-				<input type='checkbox' name=''/>
-			</td>
-		</tr>
+				<td>
+					<input type='checkbox' name='checkDocOfferte'/>
+				</td>
+			</tr>
 
 
-		</table>
-	</td></tr></table>
+			</table>
+		</td></tr></table>
+		<center><input type='submit' value='Ajouter'/></center>
+	</form>
 	";
