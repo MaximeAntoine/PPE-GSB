@@ -12,7 +12,7 @@
 				</td>
 					
 				<td>
-					<input type='text' name='dateVisite' value='05/03/2013' placeholder='jj/mm/aaaa'/>
+					<input type='text' name='dateVisite' placeholder='jj/mm/aaaa'/>
 				</td>
 			</tr>
 
@@ -22,7 +22,7 @@
 				</td>
 					
 				<td>
-				<textarea name='motif' rows='6' cols='70'>motif</textarea>
+				<textarea name='motif' rows='6' cols='70'></textarea>
 				</td>
 			</tr>
 
@@ -32,7 +32,7 @@
 				</td>
 
 				<td>
-					<textarea name='bilan' rows='6' cols='70'>yugùôg</textarea>
+					<textarea name='bilan' rows='6' cols='70'></textarea>
 				</td>
 			</tr>
 
@@ -44,7 +44,7 @@
 				</td>
 					
 				<td>
-					<select name='numeroPraticien'>
+					<select id='selectPraticiens' name='numeroPraticien'>
 						".$listeOptionPraticiens."
 					</select>
 				</td>
@@ -56,7 +56,7 @@
 				</td>
 
 				<td>
-					<input type='text' name='coefficient' value='2'/>
+					<input type='text' name='coefficient' id='coefficient' value=''/>
 				</td>
 			</tr>
 

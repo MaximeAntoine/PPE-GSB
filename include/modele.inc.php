@@ -69,7 +69,7 @@ class PdoGsb{
         // ou return $this->_pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getMedicaments() {
+   /* public function getMedicaments() {
      // retourne un tableau associatif contenant tous les visiteurs
          $req="select * from medicament";
          $rs = PdoGsb::$monPdo->query($req);
@@ -77,24 +77,59 @@ class PdoGsb{
     return $ligne;
         // ou return $this->_pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+    */
    public function getPraticiens(){
        // retourne un tableau associatif contenant tous les praticiens 
        $req="Select pra_num,pra_nom,pra_prenom,pra_adresse,pra_cp,pra_ville,pra_coefnotoriete
-             from praticien order by pra_nom";
+             from praticien
+             Order by pra_nom ASC";
        $rs = PdoGsb::$monPdo->query($req);
             $ligne = $rs->fetchAll(PDO::FETCH_ASSOC);
             return $ligne;
    }
-   
-   public function getUnPatricien($idPraticien){
+   public function getUnPatricien($id){
        // retourne un tableau associatif contenant les informations d'un praticiens
-       $req="Select pra_nom,pra_prenom,pra_adresse,pra_cp,pra_ville
-             from praticien
-             where pra_num=".$idPraticien."";
+       $req="Select pra_nom,pra_prenom,pra_adresse,pra_cp,pra_ville,pra_tel,pra_coefnotoriete,typ_libelle,pos_diplome,spe_libelle
+             from praticien  
+             inner join type_praticien on praticien.typ_code = type_praticien.typ_code
+             inner join posseder on praticien.pra_num = posseder.pra_num
+             inner join specialite on posseder.spe_code = specialite.spe_code
+             where praticien.pra_num=".$id."";
        $rs = PdoGsb::$monPdo->query($req);
             $ligne = $rs->fetchAll(PDO::FETCH_ASSOC);
             return $ligne;
+   }
+
+   public function getCoeffPatricien($id){
+       // retourne un tableau associatif contenant les informations d'un praticiens
+       $req="Select pra_coefnotoriete
+            from praticien  
+            where praticien.pra_num=".$id;
+       $rs = PdoGsb::$monPdo->query($req);
+       $ligne = $rs->fetchAll(PDO::FETCH_ASSOC);
+
+       $coeff = 0;
+       if(count($ligne) > 0){
+          $praticien = $ligne[0];
+          $coeff = $praticien['pra_coefnotoriete'];
+       }
+       return $coeff;
+   }
+
+      public function getVillePraticien($ville){
+       $req="Select pra_num,pra_nom,pra_prenom,pra_adresse,pra_cp,pra_ville,pra_coefnotoriete
+             from praticien
+             where pra_ville=".$ville."";
+       $rs = PdoGsb::$monPdo->query($req);
+            $ligne = $rs->fetchAll(PDO::FETCH_ASSOC);
+            return $ligne;
+       
+   }
+   public function getMedicaments(){
+       $req="select MED_DEPOTLEGAL, MED_NOMCOMMERCIAL, FAM_CODE, MED_COMPOSITION, MED_EFFETS, MED_CONTREINDIC, MED_PRIXECHANTILLON from medicament";
+       $rs = PdoGsb::$monPdo->query($req);
+        $ligne = $rs->fetchAll(PDO::FETCH_ASSOC);
+        return $ligne;
    }
 
    public function ajouteCompteRendu($dateSaisie, $motif, $bilan, $numeroPraticien,$coefficient, $checkRemplacant, $produitUn, $produitDeux, $checkDocOfferte, $qteProduitUn, $qteProduitDeux){
@@ -126,5 +161,6 @@ class PdoGsb{
       $sqlUpdate = "UPDATE praticien SET PRA_COEFNOTORIETE = ".$coefficient." WHERE PRA_NUM = ".$numeroPraticien;
       $r = PdoGsb::$monPdo->exec($sqlUpdate);
    }
+
 }   
   ?>

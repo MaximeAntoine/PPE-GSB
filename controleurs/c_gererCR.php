@@ -7,10 +7,9 @@ else if($_SESSION['type'] == "D")
 
 $action = $_REQUEST['action'];
 $idVisiteur = $_SESSION['vis_matricule'];
-
 switch($action){
 	case 'saisirCR': {
-		if(isset($_POST) && count($_POST) && isset($_POST['dateVisite']) && isset($_POST['motif']) && isset($_POST['bilan']) && isset($_POST['numeroPraticien']) && isset($_POST['coefficient']) && isset($_POST['produitUn']) && isset($_POST['produitDeux']) && isset($_POST['qteProduitUn']) && isset($_POST['qteProduitDeux'])){
+		if(isset($_POST) && count($_POST) > 0 && isset($_POST['dateVisite']) && isset($_POST['motif']) && isset($_POST['bilan']) && isset($_POST['numeroPraticien']) && isset($_POST['coefficient']) && isset($_POST['produitUn']) && isset($_POST['produitDeux']) && isset($_POST['qteProduitUn']) && isset($_POST['qteProduitDeux'])){
 			/*
 	
 				Si on a les champs nécessaire pour l'ajout en bdd
@@ -63,16 +62,19 @@ switch($action){
 				$listeOptionMedicaments .= "<option value='".$m['MED_DEPOTLEGAL']."'>".$m['MED_NOMCOMMERCIAL']."</option>";
 			}
 
+			include("vues/v_saisirCompteRendu.php");
 			?>
-
 			<script>
-				$('.target').change(function() {
-					alert('Handler for .change() called.');
+				$('#selectPraticiens').change(function() {
+					var numero = $("#selectPraticiens").val();
+					$.post("ajax/getCoeffPraticien.ajax.php", { numPraticien: numero})
+					.done(function(data) {
+						var coefficient = parseFloat(data);
+						$("#coefficient").val(coefficient);
+					});
 				});
 			</script>
-
 			<?php
-			include("vues/v_saisirCompteRendu.php");
 		}	
 	}
 }
